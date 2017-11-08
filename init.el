@@ -181,22 +181,9 @@
              (defun org-summary-todo (n-done n-not-done)
   "Switch entry to DONE when all subentries are done, to TODO otherwise."
   (let (org-log-done org-log-states) ; turn off logging
-    (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
-             (setq org-journal-directory "~/Dropbox/Journal/")
-             (defun get-journal-file-today ()
-               "Return filename for today's journal entry."
-               (let ((daily-name (format-time-string "%Y-%m-%d")))
-                 (expand-file-name (concat org-journal-directory daily-name ".org"))))
-             (defun journal-file-today ()
-               "Create and load a journal file based on today's date."
-               (interactive)
-               (find-file (get-journal-file-today)))
+    (org-todo (if (= n-not-done 0) "DONE" "TODO")))) 
              (setq org-capture-templates '(
-                                           ("j" "Journal entry"
-                                            entry (file (get-journal-file-today))
-                                            "* %U %?\n\n"
-                                            :empty-lines 0)
-                                           ("i" "Inbox"
+                                          ("i" "Inbox"
                                             entry (file "~/Dropbox/orgmode/inbox.org"
                                                         :empty-lines 0))
                                            ))
@@ -267,23 +254,23 @@
              (setq TeX-parse-self t)
              )
 
-(use-package reftex
-             :ensure t
-             :config
-             (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-             (add-hook 'bibtex-mode-hook 'turn-on-auto-revert-mode) ; auto-reload .bib file on change from external source
-             (setq reftex-plug-into-AUCTeX t)
-             (setq-default TeX-master "../master") ; All master files called "master".
-             (setq reftex-cite-format 'natbib) ; Set natbib as the default citation style
-             (setq reftex-default-bibliography '("~/Dropbox/library.bib"))
-             )
+;; (use-package reftex
+;;             :ensure t
+;;             :config
+;;             (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+;;             (add-hook 'bibtex-mode-hook 'turn-on-auto-revert-mode) ; auto-reload .bib file on change from external source
+;;             (setq reftex-plug-into-AUCTeX t)
+;;             (setq-default TeX-master "../master") ; All master files called "master".
+;;             (setq reftex-cite-format 'natbib) ; Set natbib as the default citation style
+;;             (setq reftex-default-bibliography '("~/Dropbox/library.bib"))
+;;             )
 
-(use-package helm-bibtex
-             :ensure t
-             :config
-             (setq bibtex-completion-bibliography
-                   '("~/Dropbox/library.bib"))
-             )
+;; (use-package helm-bibtex
+;;             :ensure t
+;;             :config
+;;             (setq bibtex-completion-bibliography
+;;                   '("~/Dropbox/library.bib"))
+;;             )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -291,7 +278,7 @@
  ;; If there is more than one, they won't work right.
  '(org-agenda-files
    (quote
-    ("/Users/hugopoon/Dropbox/Work/Quintessentially Wine APAC/" "/Users/hugopoon/Dropbox/Work/Quintessentially Wine APAC/meetings/" "/Users/hugopoon/Dropbox/Work/Quintessentially Wine APAC/sourcingreq/" "/Users/hugopoon/Dropbox/Work/Quintessentially Wine APAC/events/" "/Users/hugopoon/Dropbox/Work/Quintessentially Wine APAC/edm/" "/Users/hugopoon/Dropbox/Work/Quintessentially Wine APAC/admin/")))
+    ("~/Work/Quintessentially Wines APAC/" "~/Work/Quintessentially Wines APAC/admin" "~/Work/Quintessentially Wines APAC/edm" "~/Work/Quintessentially Wines APAC/events" "~/Work/Quintessentially Wines APAC/meetings" "~/Work/Quintessentially Wines APAC/sourcingreq")))
  '(package-selected-packages
    (quote
     (ox-latex zenburn-theme use-package powerline helm-projectile helm-bibtex auctex)))
